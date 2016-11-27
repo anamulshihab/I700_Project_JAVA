@@ -3,53 +3,62 @@ package main_package;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import interfaces.OptionChoser_Interface;
 import student_Info.Student;
 
-public class MainClass {
+public class MainClass implements OptionChoser_Interface{
 	
 	static ArrayList<Student> studentArrayList;
 	
 	 public static void main(String[] args) {
 	        
-		 studentArrayList = new ArrayList<Student>();
-		 
 		 MainClass mainClass = new MainClass();
 		 
-		 System.out.println("Developed By Anamul Hoque Shihab ...\n");
+		 showMyInfo(); // to show my info;
 		 
-		 Scanner a = new Scanner(System.in);
+		 studentArrayList = new ArrayList<Student>();
 		 
-		 System.out.println("Press 1 to add a Students Info");
-		 System.out.println("Press 2 to show Students Info");
+		 
+		 
+		 int option = mainClass.choseOption(); //Calling choseoption method to Show menu
 
-		
-		int key = a.nextInt();
 		 
-		// while(1<2)
+		 /* A loop and switch to display the menu */ 
+		 do
 		 {
-		 switch(key)
-		 {
-		 case 1:
-			 mainClass.addStudent();
-			 break;
-			 
-		 case 2:	 
-			 mainClass.showStudentInfo();
-			 break;
-			 
-		default:
-			System.out.println("PLEASE CHOOSE THE RIGHT KEY ! ");
-			break;
-		 }
+			 switch(option)
+			 {
+				 case 1:
+					 mainClass.addStudent();
+					 option = mainClass.choseOption();
+					 break;
+					 
+				 case 2:
+					 mainClass.deleteSingleStudent();
+					 option = mainClass.choseOption();
+					 break;
+					 
+				 case 3:
+					 mainClass.showStudentInfo();
+					 option = mainClass.choseOption();
+					 break;
+					 
+				 case 4:
+					 mainClass.deleteAllStudentInfo();
+					 option = mainClass.choseOption();
+					 break;
+					 
+			 } // switch ends
+							
 		 
-		 }
+		 }while(option!= 0); //do While loop ends
 		 
-		
-		 
-		 
-		 
-		 
-	 }
+	 } // Main Class ends
+	 
+	 
+	 /* This method add a new Student info to the arraylist
+	  *
+	  */
 	 
 	 public void addStudent(){
 		 
@@ -85,17 +94,103 @@ public class MainClass {
 		 
          studentArrayList.add(student);
          
+  
+        
+	 } // AddStudent method ends;
+	 
+	 
+	 /* This method Delete a Student info from  the arraylist
+	  *
+	  */
+	 
+	 private void deleteSingleStudent(){
+		 System.out.print("Enter Student ID: ");
+		 Scanner input = new Scanner(System.in);
+         int studentID = input.nextInt();
+         
+	     for(int i=0; i<studentArrayList.size(); i++){
+			if(studentArrayList.get(i).getStudentID() == studentID){
+				System.out.println("Student ID = "+studentArrayList.get(i).getStudentID()+" Has Successfully Deleted!\n");
+				studentArrayList.remove(i);
+				
+			}
+	     }
+	     
 	 }
-
-	 public void showStudentInfo(){
+	 
+	 /* This method Delete all existing Student info from  the arraylist
+	  *
+	  */
+	 
+	 private void deleteAllStudentInfo(){
+		 System.out.print("Do you want to delete all student info: y/n ");
 		 
-		 System.out.println("Studetn Info : ");
-		 for(int i=0; i<studentArrayList.size(); i++){
-			 
-			 System.out.println(""+studentArrayList.get(i).getStudentName()+"\n"+studentArrayList.get(i).getStudentID()
-					 +"\n"+studentArrayList.get(i).getStudentDept()+"\n"+studentArrayList.get(i).getStudentAge()+"\n"
-					 +studentArrayList.get(i).getStudentCGPA());
-			 
+		 Scanner input = new Scanner(System.in);
+		 String answer =input.nextLine();
+		 
+		 if(answer.equals("y")){
+			 if(studentArrayList.size() > 0){
+				 studentArrayList.clear();
+				 System.out.println("Successfully Deleted All Student Info \n");
+			 }
+		 }
+		 else if(answer.equals("No data Found to delete!!!")){
+			 //do nothing;
+		 }
+		 else{
+			 System.out.print("Wrong Input!");
 		 }
 	 }
+	 
+	 /* This method Show a Student info from  the arraylist;
+	  *
+	  */
+	 
+	 private void showStudentInfo(){
+		 
+		if(studentArrayList.size() == 0){
+			System.out.println("No Studetn Info Available! \n");
+		}else{
+			 System.out.println("\nAll Student Info : \n");
+			 for(int i=0; i<studentArrayList.size(); i++){
+				 
+				 System.out.println("ID: "+studentArrayList.get(i).getStudentID()+"\t"+"Student Name: "+studentArrayList.get(i).getStudentName()+"\t"
+						 +"Dept: "+studentArrayList.get(i).getStudentDept()+"\t"+studentArrayList.get(i).getStudentAge()+"\t"
+						 +studentArrayList.get(i).getStudentCGPA());
+				 
+			 }
+		}
+	 }
+	 
+	 
+	 
+	 
+	 
+     private static void showMyInfo(){
+		 
+		 System.out.println("Anamul Hoque Shihab \n Batch - C11");
+	 }
+     
+     /* This method Display the Menu for the User;
+	  * Implementing the methods for the interface called OptionChoser_interface
+	  
+	  */
+	@Override
+	public int choseOption() {
+		// TODO Auto-generated method stub
+		Scanner makeChooice = new Scanner(System.in);
+		 
+		 System.out.println("\nPress 1 To Add A New Student");
+		 System.out.println("Press 2 To Delete A Student Info");
+		 System.out.println("Press 3 To Show Exixting Student Info");
+		 System.out.println("Press 4 To Delete All Student Info");
+		 System.out.println("Press 0 to Exit:  ");
+	         
+		 System.out.print("Enter Your Option: ");
+		 int option = makeChooice.nextInt();
+		 
+		 return option;
+	}
+	 
+
 }
