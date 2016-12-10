@@ -30,7 +30,9 @@ public class MainClass implements OptionChoser_Interface {
 		showMyInfo(); // to show my info;
 
 		studentArrayList = new ArrayList<Student>();
-
+		
+		 
+		
 		int option = mainClass
 				.choseOption(); /*
 								 * Calling choseoption method to Show menu;
@@ -180,9 +182,9 @@ public class MainClass implements OptionChoser_Interface {
 			System.out.println("\nAll Student Info : \n");
 			for (int i = 0; i < studentArrayList.size(); i++) {
 
-				System.out.println("ID: " + studentArrayList.get(i).getStudentID() + "\t" + "Student Name: "
-						+ studentArrayList.get(i).getStudentName() + "\t" + "Dept: "
-						+ studentArrayList.get(i).getStudentDept() + "\t" + studentArrayList.get(i).getStudentAge()
+				System.out.println("ID: " + studentArrayList.get(i).getStudentID() + "\t ||" + "Student Name: "
+						+ studentArrayList.get(i).getStudentName() + "\t||" + "Dept: "
+						+ studentArrayList.get(i).getStudentDept() + "\t||" + studentArrayList.get(i).getStudentAge()
 						+ "\t" + studentArrayList.get(i).getStudentCGPA() + "\t" + studentArrayList.get(i).getstudentBatch());
 
 			}
@@ -205,15 +207,21 @@ public class MainClass implements OptionChoser_Interface {
 	public int choseOption() {
 		// TODO Auto-generated method stub
 		Scanner makeChoice = new Scanner(System.in);
+		System.out.print("\n=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=");
+		System.out.print("\n \t\t<=Student Management System==>");
+		System.out.print("\n=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=\n");
 		
-		System.out.print("\n======================================================================");
-		System.out.println("\nPress 1 To Add A New Student ");
-		System.out.println("Press 2 To Delete A Student Info ");
-		System.out.println("Press 3 To Show Exixting Student Info");
-		System.out.println("Press 4 To Delete All Student Info ");
-		System.out.println("Press 5 to Enrol a Student To a New Subject:  ");
-		System.out.println("Press 6 To Show the Number Of Students Enrolled in diiferent Subjects ");
-		System.out.println("Press 0 to Exit:  ");
+		System.out.print("\n************************************************************************\n");
+		System.out.printf("\nNumber of Students Data Stored Already:  ");
+		totalSize();
+		System.out.print("\n************************************************************************\n");
+		System.out.println("\n\t ==> Press 1 To Add A New Student   ");
+		System.out.println("\t ==> Press 2 To Delete A Student Info ");
+		System.out.println("\t ==> Press 3 To Show Exixting Student Info");
+		System.out.println("\t ==> Press 4 To Delete All Student Info ");
+		System.out.println("\t ==> Press 5 to Enrol a Student To a New Subject:  ");
+		System.out.println("\t ==> Press 6 To Show the Number Of Students Enrolled in diiferent Subjects ");
+		System.out.println("\t ==> Press 0 to Exit:  ");
 		System.out.print("=======================================================================\n");
 		System.out.print("\t  Enter Your Option: ");
 		
@@ -222,6 +230,11 @@ public class MainClass implements OptionChoser_Interface {
 		return option;
 	}
 	
-
+	public void totalSize(){
+		
+		int size = studentArrayList.size();
+		 System.out.println(size);
+		 
+	}//Function to count the total number of students data recorded in arraylist;
 
 }
