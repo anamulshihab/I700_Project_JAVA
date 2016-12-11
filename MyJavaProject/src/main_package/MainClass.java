@@ -207,7 +207,7 @@ public class MainClass implements OptionChoser_Interface {
 	public int choseOption() {
 		// TODO Auto-generated method stub
 		Scanner makeChoice = new Scanner(System.in);
-		System.out.print("\n=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=");
+		System.out.print("\n=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=\n");
 		System.out.print("\n \t\t<=Student Management System==>");
 		System.out.print("\n=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=\n");
 		
