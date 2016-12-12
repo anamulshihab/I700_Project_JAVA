@@ -185,8 +185,8 @@ public class MainClass implements OptionChoser_Interface {
 
 				System.out.println("ID: " + studentArrayList.get(i).getStudentID() + "\t ||" + "Student Name: "
 						+ studentArrayList.get(i).getStudentName() + "\t||" + "Dept: "
-						+ studentArrayList.get(i).getStudentDept() + "\t||" + studentArrayList.get(i).getStudentAge()
-						+ "\t" + studentArrayList.get(i).getStudentCGPA() + "\t" + studentArrayList.get(i).getstudentBatch());
+						+ studentArrayList.get(i).getStudentDept() + "\t||AGE: " + studentArrayList.get(i).getStudentAge()
+						+ "\t|| CGPA: " + studentArrayList.get(i).getStudentCGPA() + "\t|| BATCH: " + studentArrayList.get(i).getstudentBatch());
 
 			}
 		}
@@ -208,9 +208,9 @@ public class MainClass implements OptionChoser_Interface {
 	public int choseOption() {
 		// TODO Auto-generated method stub
 		Scanner makeChoice = new Scanner(System.in);
-		System.out.print("\n\n=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=\n");
+		System.out.print("\n\n=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=\n");
 		System.out.print("\n \t\t<=Student Management System==>");
-		System.out.print("\n\n=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=\n\n");
+		System.out.print("\n\n=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=ï¿½=\n\n");
 		
 		System.out.print("\n************************************************************************\n");
 		System.out.printf("\nNumber of Students Data Stored Already:  ");
