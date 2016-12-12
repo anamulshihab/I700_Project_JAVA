@@ -1,10 +1,5 @@
 package main_package;
 
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 /**
  * Student Information System;
  * @Author  Anamul Hoque Shihab
@@ -13,9 +8,9 @@ import java.nio.file.Paths;
  * @Email:ashihab@itcollege.ee
  */
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+		import java.util.Scanner;
+
+import database.Database;
 import interfaces.OptionChoser_Interface; //Importing Interface from Package called interfaces
 import student_Info.*; //Importing Student class from Package called student_info
 
@@ -27,9 +22,11 @@ public class MainClass implements OptionChoser_Interface {
 
 		MainClass mainClass = new MainClass();
 
-		showMyInfo(); // to show my info;
+		// Load data
+		Database.createDatabaseFiles();
+		studentArrayList = Database.loadStudents();
 
-		studentArrayList = new ArrayList<Student>();
+		showMyInfo(); // to show my info;
 		
 		 
 		
@@ -41,37 +38,41 @@ public class MainClass implements OptionChoser_Interface {
 								 * functions upon users request
 								 */
 		do {
-
 			switch (option) {
 			case 1:
 				mainClass.addStudent();
-				option = mainClass.choseOption();
 				break;
 
 			case 2:
 				mainClass.deleteSingleStudent();
-				option = mainClass.choseOption();
 				break;
 
 			case 3:
 				mainClass.showStudentInfo();
-				option = mainClass.choseOption();
 				break;
 
 			case 4:
 				mainClass.deleteAllStudentInfo();
-				option = mainClass.choseOption();
 				break;
 				
 			case 5:
-				SubjectTaken.Enrol();
+				SubjectTaken.enrol();
 				break;
 			
 			case 6:	
 				SubjectTaken.Subject();
 				break;
 
+			case 7:
+				SubjectTaken.derol();
+				break;
+
 			} // switch ends
+
+			// Update students database before asking new question
+			Database.updateStudents(studentArrayList);
+			// Ask new question
+			option = mainClass.choseOption();
 
 		} while (option != 0); // do While loop ends
 
@@ -207,9 +208,9 @@ public class MainClass implements OptionChoser_Interface {
 	public int choseOption() {
 		// TODO Auto-generated method stub
 		Scanner makeChoice = new Scanner(System.in);
-		System.out.print("\n=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=\n");
+		System.out.print("\n\n=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=\n");
 		System.out.print("\n \t\t<=Student Management System==>");
-		System.out.print("\n=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=\n");
+		System.out.print("\n\n=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=•=\n\n");
 		
 		System.out.print("\n************************************************************************\n");
 		System.out.printf("\nNumber of Students Data Stored Already:  ");
@@ -221,6 +222,7 @@ public class MainClass implements OptionChoser_Interface {
 		System.out.println("\t ==> Press 4 To Delete All Student Info ");
 		System.out.println("\t ==> Press 5 to Enrol a Student To a New Subject:  ");
 		System.out.println("\t ==> Press 6 To Show the Number Of Students Enrolled in diiferent Subjects ");
+		System.out.println("\t ==> Press 7 To To remove student from subject ");
 		System.out.println("\t ==> Press 0 to Exit:  ");
 		System.out.print("=======================================================================\n");
 		System.out.print("\t  Enter Your Option: ");

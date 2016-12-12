@@ -12,6 +12,8 @@ public class Student extends DatabaseObject {
 	private int studentAge;
 	private float studentCGPA;
 	private int studentBatch;
+	private ArrayList<Integer> studentSubjects = new ArrayList<Integer>();
+
 	// all setter methods;
 	public void setStudentName(String studentName) {
 		this.studentName = studentName;
@@ -63,6 +65,8 @@ public void setStuden(float studentCGPA) {
 		return studentBatch;
 	}
 
+	public ArrayList<Integer> getStudentSubjects(){return studentSubjects; }
+
 	// Regular constructor
 	public Student(String studentName, int studentID, String studentDept, int studentAge, float studentCGPA, int studentBatch) {
 
@@ -78,8 +82,14 @@ public void setStuden(float studentCGPA) {
 	public Student() {
 	}
 
+	public void enrol(int subjectId)
+	{
+		studentSubjects.add(subjectId);
+	}
+
 	// For store data super is called later because super stores data that is pushed into data array list
-	public void storeData(ArrayList<Object> data)
+	@Override
+	public ArrayList<Object> storeData(ArrayList<Object> data)
 	{
 		data.add(studentName);
 		data.add(studentID);
@@ -88,17 +98,37 @@ public void setStuden(float studentCGPA) {
 		data.add(studentCGPA);
 		data.add(studentBatch);
 
-		super.storeData(data);
+		String subjectsString = "";
+		for(Integer studentSubject : studentSubjects)
+		{
+			subjectsString += studentSubject;
+			if(studentSubjects.get(studentSubjects.size() - 1) != studentSubject)
+			{
+				subjectsString += ",";
+			}
+		}
+		data.add(subjectsString);
+
+		return data;
 	}
 
 	// For load data super is called first, because super reads the file itself
+	@Override
 	public void loadData(String[] data)
 	{
-		studentName = data[0].toString(); // String
-		studentID = Integer.parseInt(data[1].toString()); // Int
-		studentDept = data[2].toString(); // String
-		studentAge = Integer.parseInt(data[3].toString()); // Int
-		studentCGPA = Integer.parseInt(data[4].toString()); // Int
-		studentBatch = Integer.parseInt(data[5].toString()); // Int
+		studentName = data[0]; // String
+		studentID = Integer.parseInt(data[1]);
+		studentDept = data[2]; // String
+		studentAge = Integer.parseInt(data[3]);
+		studentCGPA = Float.parseFloat(data[4]);
+		studentBatch = Integer.parseInt(data[5]);
+
+		String[] subjectsData = data[6].split(",");
+		ArrayList<Integer> subjectsList = new ArrayList<Integer>();
+		for(String subjectString : subjectsData)
+		{
+			subjectsList.add(Integer.parseInt(subjectString));
+		}
+		studentSubjects = subjectsList;
 	}
 }
